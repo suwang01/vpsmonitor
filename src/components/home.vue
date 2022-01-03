@@ -1,32 +1,8 @@
 <template>
   <div class="layout" id="home">
     <Layout>
-      <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
-          <div class="layout-logo">
-            <h2>VPS监控</h2>
-          </div>
-          <div class="layout-nav">
-            <MenuItem name="home" to="/1">
-            <Icon type="md-home"></Icon>
-            首页
-            </MenuItem>
-            <MenuItem name="login">
-            <Icon type="md-contact"></Icon>
-            登录
-            </MenuItem>
-            <MenuItem name="about">
-            <Icon type="ios-analytics"></Icon>
-            关于
-            </MenuItem>
-            <MenuItem name="boke">
-            <Icon type="ios-paper"></Icon>
-            博客
-            </MenuItem>
-          </div>
-        </Menu>
-      </Header>
-      <Content :style="{margin: '88px 20px 0',  minHeight: '1300px'}">
+      <v-nav></v-nav>
+      <Content style="margin-top: 20px;">
         <Row :gutter="12">
           <Col :xs="24" :sm="12" :md="12" :lg="6" style="margin-bottom: 20px;" id="serverinfo" v-for="(server,index) in servers" :key="index">
           <div style="text-align: center;">
@@ -76,14 +52,14 @@
           </Col>
         </Row>
       </Content>
-      <Footer class="layout-footer-center">
-        <h3>2020-2021 &copy; Suwang</h3>
-      </Footer>
+      <v-footer></v-footer>
     </Layout>
   </div>
 </template>
 <script>
   import axios from 'axios'
+  import navs from './nav.vue'
+  import footers from './footer.vue'
   export default {
     name:'home',
     data(){
@@ -100,7 +76,12 @@
     },
     created() {
       this.getserver();
+    },
+    components:{
+      "v-nav":navs,
+      "v-footer":footers
     }
+
   }
 </script>
 <style scoped>
@@ -111,42 +92,6 @@
     border-radius: 4px;
     overflow: hidden;
   }
-
-  .layout-logo {
-    width: 100px;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
-    float: left;
-    position: relative;
-    top: 15px;
-    left: 20px;
-
-  }
-
-  .layout-logo h2 {
-    text-align: center;
-    color: #ffffff;
-    position: relative;
-    top: -15px;
-    left: 0px;
-  }
-
-  .layout-nav {
-    width: 420px;
-    margin: 0 auto;
-    margin-right: 20px;
-  }
-
-  .layout-footer-center {
-    text-align: center;
-    background-color: #515a6e;
-  }
-
-  .layout-footer-center h3 {
-    color: #ffffff;
-  }
-
   span {
     display: inline-block;
     width: 70px;

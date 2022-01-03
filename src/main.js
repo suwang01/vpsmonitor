@@ -6,7 +6,7 @@ import router from './router'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import axios from 'axios';
-
+import "./permission";
 
 Vue.prototype.$axios =axios;
 
